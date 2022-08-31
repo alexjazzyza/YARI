@@ -28,10 +28,10 @@ public class Vehicle {
     private boolean availability;
     private Float priceCoeff;
 
-  /*  @OneToMany
+   @OneToMany(mappedBy = "vehicle")
     private List<Reservation> reservations;
 
     @ManyToOne
-    private Agency agency;*/
+    private Agency agency;
 
 }
