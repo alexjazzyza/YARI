@@ -3,11 +3,16 @@ package com.doranco.yari.agency;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
-/*@Getter
+@Entity
+@Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString*/
+@ToString
 public class Agency {
+    @Id
+    private String idAgency;
+
 }
