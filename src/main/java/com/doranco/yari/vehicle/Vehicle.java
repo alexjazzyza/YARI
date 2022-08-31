@@ -5,6 +5,7 @@ import com.doranco.yari.reservation.Reservation;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,7 +30,8 @@ public class Vehicle {
     private Float priceCoeff;
 
    @OneToMany(mappedBy = "vehicle")
-    private List<Reservation> reservations;
+
+    private List<Reservation> reservations =new ArrayList<>();
 
     @ManyToOne
     private Agency agency;
