@@ -3,10 +3,7 @@ package com.doranco.yari.reservation;
 import com.doranco.yari.vehicle.Vehicle;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 @Entity
 @Getter
@@ -20,7 +17,9 @@ public class Reservation {
     @Column(length = 10)
     private String idReservation;
     private double amount;
+    @Temporal(TemporalType.DATE)
     private Date startDate = new Date();
+    @Temporal(TemporalType.DATE)
     private Date endDate = new Date();
     @ManyToOne
     private Vehicle vehicle;
