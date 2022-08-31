@@ -26,21 +26,23 @@ public class CustomerService implements ICustomerService{
     }
 
     @Override
-    public Customer deleteCustomer(Integer idCustomer) throws Exception {
-        Customer customer = getCustomerById(idCustomer);
-        customerRepository.deleteById(idCustomer);
+    public Customer deleteCustomer(Long idUser) throws Exception {
+        Customer customer = getCustomerById(idUser);
+        customerRepository.deleteById(idUser);
         return customer;
     }
 
     @Override
-    public Customer getCustomerById(Integer idCustomer) throws Exception {
-        Optional<Customer> customerOptional = customerRepository.findById(idCustomer);
+    public Customer getCustomerById(Long idUser) throws Exception {
+        Optional<Customer> customerOptional = customerRepository.findById(idUser);
         if (customerOptional.isPresent())
         {
             return customerOptional.get();
         }
         else
+        {
             throw new RuntimeException("Customer not found.");
+        }
     }
 
     @Override

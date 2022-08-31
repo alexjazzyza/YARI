@@ -41,25 +41,25 @@ public class CustomerRestController {
         return c;
     }
 
-    @PutMapping("/{idCustomer}")
-    public Customer updateCustomer(@PathVariable Integer idCustomer, @RequestBody Customer customer) {
+    @PutMapping("/{idUser}")
+    public Customer updateCustomer(@PathVariable Long idUser, @RequestBody Customer customer) {
 
         Customer c = null;
         try {
-            c = customerService.saveCustomer(customer);
+            c = customerService.updateCustomer(customer);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return c;
     }
 
-    @DeleteMapping("/{idCustomer}")
-    public Customer deleteCustomer(@PathVariable Integer idCustomer) {
+    @DeleteMapping("/{idUser}")
+    public Customer deleteCustomer(@PathVariable Long idUser) {
 
         Customer customer = null;
 
         try {
-            customer = customerService.deleteCustomer(idCustomer);
+            customer = customerService.deleteCustomer(idUser);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -67,12 +67,12 @@ public class CustomerRestController {
     }
 
     @GetMapping("/getById")
-    public Customer getCustomerById(@RequestParam Integer idCustomer) {
+    public Customer getCustomerById(@RequestParam Long idUser) {
 
         Customer customer = null;
 
         try {
-            customer = customerService.getCustomerById(idCustomer);
+            customer = customerService.getCustomerById(idUser);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

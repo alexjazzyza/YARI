@@ -7,7 +7,7 @@ public interface ICustomerService {
 
     public Customer saveCustomer(Customer customer);
     public Customer updateCustomer(Customer customer);
-    public Customer deleteCustomer(Integer idCustomer) throws Exception;
-    public Customer getCustomerById(Integer idCustomer) throws Exception;
+    public Customer deleteCustomer(Long idUser) throws Exception;
+    public Customer getCustomerById(Long idUser) throws Exception;
     public Page<Customer> getAllCustomers(Pageable pageable);
 }

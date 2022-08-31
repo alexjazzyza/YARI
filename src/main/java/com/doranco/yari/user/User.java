@@ -2,8 +2,7 @@ package com.doranco.yari.user;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -11,16 +10,18 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class User {
 
     @Id
-    private Integer idUser;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_generator")
+    @SequenceGenerator(name="user_generator", sequenceName = "user_seq", allocationSize=50)
+    private Long idUser;
     private String lastName;
     private String firstName;
     private String login;
     private String password;
     private String address;
     private String email;
-    private EUserType userType;
 
 }

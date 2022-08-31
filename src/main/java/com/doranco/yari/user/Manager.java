@@ -2,7 +2,7 @@ package com.doranco.yari.user;
 
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
 
 @Entity
 @Getter
@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Customer extends User{
+public class Manager extends User {
 
     private String test;
 }

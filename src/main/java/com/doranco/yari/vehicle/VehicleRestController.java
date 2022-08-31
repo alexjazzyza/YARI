@@ -63,4 +63,16 @@ public class VehicleRestController {
         }
         return v;
     }
+
+    @GetMapping("/getById")
+    public Vehicle getVehicleById(@RequestParam(name="refVehicle") String refVehicle)
+    {
+        Vehicle v = null;
+        try {
+            v = vehicleService.getVehicleById(refVehicle);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return v;
+    }
 }
