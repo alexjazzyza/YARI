@@ -1,2 +1,4 @@
-package com.doranco.yari.reservation;public interface IReservationService {
+package com.doranco.yari.reservation;
+
+public interface IReservationService {
 }
