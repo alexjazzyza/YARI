@@ -10,4 +10,5 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 @ToString*/
 public class Agency {
+
 }
