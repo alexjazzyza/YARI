@@ -67,7 +67,7 @@ public class CustomerRestController {
     }
 
     @GetMapping("/getById")
-    public Customer getCustomerById(@RequestParam Long idUser) {
+    public Customer getCustomerById(@RequestParam(name="idUser") Long idUser) {
 
         Customer customer = null;
 

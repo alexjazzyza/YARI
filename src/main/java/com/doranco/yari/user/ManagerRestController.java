@@ -54,7 +54,7 @@ public class ManagerRestController {
     }
 
     @GetMapping("/getById")
-    public Manager getManagerById(@RequestParam Long idUser) {
+    public Manager getManagerById(@RequestParam(name="idUser") Long idUser) {
         Manager m = null;
         try {
             m = managerService.getManagerById(idUser);
