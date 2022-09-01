@@ -1,6 +1,5 @@
 package com.doranco.yari.vehicle;
 
-import com.doranco.yari.agency.Agency;
 import com.doranco.yari.reservation.Reservation;
 import lombok.*;
 

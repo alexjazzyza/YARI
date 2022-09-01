@@ -3,6 +3,7 @@ package com.doranco.yari.vehicle;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Date;
 import java.util.List;
 
 public interface IVehicleService {
@@ -13,6 +14,8 @@ public interface IVehicleService {
     public Vehicle getVehicleById(String refVehicle) throws Exception;
     public Vehicle getVehiclesByType(EVehicleType vehicleType);
     public Page<Vehicle> getAllVehicles(Pageable pageable);
+
+    public List<Vehicle>getAvailbaleVehicle(Agency agency, Date dateDeb , Date dateF , EVehicleType t) throws Exception;
 
     public Vehicle changeVehicleAvailability(String refVehicle, boolean availability);
 }

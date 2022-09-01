@@ -3,6 +3,10 @@ package com.doranco.yari.reservation;
 import com.doranco.yari.vehicle.Vehicle;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +20,15 @@ public class ReservationService implements IReservationService{
 
     @Override
     public Reservation saveReservation(Reservation reservation) throws Exception {
+
         return reservationRepository.save(reservation);
+    }
+    public boolean isAVailable (){
+        //tester les dates entrées par le custoemrs avec les dates de
+        //
+
+
+        return true;
     }
 
     @Override
@@ -43,9 +55,9 @@ public class ReservationService implements IReservationService{
 
     @Override
     public double calculationAmount(Vehicle vehicle) throws Exception {
-        float coeffVehicule = vehicle.getPriceCoeff();
 
-        return coeffVehicule*100;
+        float coeffVehicule = vehicle.getPriceCoeff();
+       return coeffVehicule * 100;
     }
 
     @Override
