@@ -1,14 +1,25 @@
 package com.doranco.yari.agency;
 
+import com.doranco.yari.vehicle.Vehicle;
 import lombok.*;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.util.List;
 
-/*@Getter
+@Entity
+@Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString*/
+@ToString
 public class Agency {
+
+    @Id
+    @Column(name="id_agency", length = 10)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idAgency;
+    private ECities city;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "agency")
+    private List<Vehicle> vehicleList;
 
 }

@@ -27,11 +27,10 @@ public class Vehicle {
     private Integer volume;
     private boolean availability;
     private Float priceCoeff;
+    @ManyToOne
+    private Agency agency;
 
   /*  @OneToMany
-    private List<Reservation> reservations;
-
-    @ManyToOne
-    private Agency agency;*/
+    private List<Reservation> reservations;*/
 
 }

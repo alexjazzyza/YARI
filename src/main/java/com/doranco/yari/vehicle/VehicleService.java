@@ -54,8 +54,4 @@ public class VehicleService implements IVehicleService {
         return vehicleRepository.findAll(pageable);
     }
 
-    @Override
-    public Vehicle changeVehicleAvailability(String refVehicle, boolean availability) {
-        return null;
-    }
 }

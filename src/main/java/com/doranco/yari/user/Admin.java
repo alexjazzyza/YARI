@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Manager extends User {
+public class Admin extends User{
 
     private String authority;
 }

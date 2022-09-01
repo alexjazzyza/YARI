@@ -14,5 +14,4 @@ public interface IVehicleService {
     public Vehicle getVehiclesByType(EVehicleType vehicleType);
     public Page<Vehicle> getAllVehicles(Pageable pageable);
 
-    public Vehicle changeVehicleAvailability(String refVehicle, boolean availability);
 }

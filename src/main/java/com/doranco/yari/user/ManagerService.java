@@ -33,7 +33,7 @@ public class ManagerService implements IManagerService{
     }
 
     @Override
-    public Manager getManagerById(Long idUser) throws Exception{
+    public Manager getManagerById(Long idUser) throws Exception {
         Optional<Manager> managerOptional = managerRepository.findById(idUser);
         if(managerOptional.isPresent())
         {
@@ -41,12 +41,13 @@ public class ManagerService implements IManagerService{
         }
         else
         {
-                throw new RuntimeException("Manager not found.");
+            throw new RuntimeException("Manager not found.");
         }
     }
 
     @Override
-    public Page<Manager> getAllManagers(Pageable pageable) throws Exception{
+    public Page<Manager> getAllManagers(Pageable pageable) throws Exception {
         return managerRepository.findAll(pageable);
     }
+
 }

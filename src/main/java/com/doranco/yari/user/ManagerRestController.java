@@ -16,11 +16,11 @@ public class ManagerRestController {
 
     @GetMapping
     public Page<Manager> getManagerPage(@RequestParam(name="size", defaultValue="10") int size,
-                                        @RequestParam(name="page", defaultValue = "0") int page) {
+                                          @RequestParam(name="page", defaultValue = "0") int page) {
 
         Page<Manager> managers = null;
 
-        try {
+        try{
             managers = managerService.getAllManagers(PageRequest.of(page, size));
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -29,38 +29,52 @@ public class ManagerRestController {
     }
 
     @PostMapping
-    public Manager saveManager(@RequestBody Manager manager) {
+    public Manager saveManager(@RequestBody Manager customer) {
+
         Manager m = null;
-        m = managerService.saveManager(manager);
+        try {
+            m = managerService.saveManager(customer);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         return m;
     }
 
     @PutMapping("/{idUser}")
     public Manager updateManager(@PathVariable Long idUser, @RequestBody Manager manager) {
+
         Manager m = null;
-        m = managerService.updateManager(manager);
+        try {
+            m = managerService.updateManager(manager);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         return m;
     }
 
     @DeleteMapping("/{idUser}")
     public Manager deleteManager(@PathVariable Long idUser) {
-        Manager m = null;
+
+        Manager manager = null;
+
         try {
-            m = managerService.deleteManager(idUser);
+            manager = managerService.deleteManager(idUser);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return m;
+        return manager;
     }
 
     @GetMapping("/getById")
     public Manager getManagerById(@RequestParam(name="idUser") Long idUser) {
-        Manager m = null;
+
+        Manager manager = null;
+
         try {
-            m = managerService.getManagerById(idUser);
+            manager = managerService.getManagerById(idUser);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return m;
+        return manager;
     }
 }
