@@ -1,4 +1,4 @@
-package com.doranco.yari.user;
+package com.doranco.yari.user.manager;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

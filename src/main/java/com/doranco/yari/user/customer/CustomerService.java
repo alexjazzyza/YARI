@@ -1,4 +1,4 @@
-package com.doranco.yari.user;
+package com.doranco.yari.user.customer;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class CustomerService implements ICustomerService{
+public class CustomerService implements ICustomerService {
 
     private final ICustomerRepository customerRepository;
 
@@ -49,4 +49,7 @@ public class CustomerService implements ICustomerService{
     public Page<Customer> getAllCustomers(Pageable pageable) {
         return customerRepository.findAll(pageable);
     }
+
+
+
 }

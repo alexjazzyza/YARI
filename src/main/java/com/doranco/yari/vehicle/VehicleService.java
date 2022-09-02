@@ -1,5 +1,7 @@
 package com.doranco.yari.vehicle;
 
+import com.doranco.yari.agency.Agency;
+import com.doranco.yari.agency.ECities;
 import com.doranco.yari.reservation.Reservation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -41,11 +43,9 @@ public class VehicleService implements IVehicleService {
     @Override
     public Vehicle getVehicleById(String refVehicle) throws Exception {
         Optional<Vehicle> vehicleOptional = vehicleRepository.findById(refVehicle);
-        if (vehicleOptional.isPresent())
-        {
+        if (vehicleOptional.isPresent()) {
             return vehicleOptional.get();
-        }
-        else
+        } else
             throw new RuntimeException("Vehicle not found.");
     }
 
@@ -59,24 +59,22 @@ public class VehicleService implements IVehicleService {
         return vehicleRepository.findAll(pageable);
     }
 
-
-
     @Override
-    public List<Vehicle> getAvailbaleVehicle(Agency agency, Date dateDeb , Date dateF , EVehicleType t) throws Exception {
+    public List<Vehicle> getAvailableVehicle(ECities city, Date dateDeb, Date dateF, EVehicleType t) throws Exception {
         //filtrer les vehicules par agence
         //filtrer les vehicules par typeVehicule
-        List<Vehicle>listAvailbaleVehicle=new ArrayList<>();
+        List<Vehicle> availableVehicles = new ArrayList<>();
 
-        List<Vehicle>listVehicleBytype=new ArrayList<>();
+        List<Vehicle> listVehicleBytype = new ArrayList<>();
 
-        listVehicleBytype=vehicleRepository.findVehicleByVehicleType(t);
+        listVehicleBytype = vehicleRepository.findVehicleByVehicleType(t);
 
-      //  List<Reservation> listeDesReservation=new ArrayList<>();
+        //  List<Reservation> listeDesReservation=new ArrayList<>();
 
         for (Vehicle v :
                 listVehicleBytype) {
 
-            if(v.getAgency().equals(agency)){
+            if (v.getAgency().getCity().name().equals(city.name())) {
 
                 //listeDesReservation=v.getReservations();
 
@@ -94,34 +92,22 @@ public class VehicleService implements IVehicleService {
                     //for (Reservation r:listeDesReservation) {
 
 
-                        for (Reservation r:v.getReservations()) {
-                            dateDebutRes = r.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                            dateFinRes = r.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                            if (current.isAfter(dateDebutRes) && current.isBefore(dateFinRes)) {
-                                i = 1;
-                                break;
-                            }
+                    for (Reservation r : v.getReservations()) {
+                        dateDebutRes = r.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                        dateFinRes = r.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                        if (current.isAfter(dateDebutRes) && current.isBefore(dateFinRes)) {
+                            i = 1;
+                            break;
                         }
                     }
-                    if (i == 0) {
-                        listAvailbaleVehicle.add(v);
-                    } else {
-                        throw new RuntimeException("Vehicle not available.");
-                    }
-
+                }
+                if (i == 0) {
+                    availableVehicles.add(v);
+                } else {
+                    throw new RuntimeException("Vehicle not available.");
+                }
             }
         }
-
-        return listAvailbaleVehicle ;
-
-
-
-
-
-    }
-
-    @Override
-    public Vehicle changeVehicleAvailability(String refVehicle, boolean availability) {
-        return null;
+        return availableVehicles;
     }
 }

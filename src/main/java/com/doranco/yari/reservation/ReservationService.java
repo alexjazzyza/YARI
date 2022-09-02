@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ReservationService implements IReservationService{
+public class ReservationService implements IReservationService {
     private final ReservationRepository reservationRepository;
 
     public ReservationService(ReservationRepository reservationRepository) {
@@ -23,45 +23,48 @@ public class ReservationService implements IReservationService{
 
         return reservationRepository.save(reservation);
     }
-    public boolean isAVailable (){
-        //tester les dates entrées par le custoemrs avec les dates de
-        //
-
-
-        return true;
-    }
 
     @Override
-    public Reservation updateResevation(Reservation reservation) throws Exception {
+    public Reservation updateReservation(Reservation reservation) throws Exception {
         return  reservationRepository.save(reservation);
     }
 
     @Override
-    public Reservation removeReservation(String idResevation) throws Exception {
-        Reservation reservation = getReservationById(idResevation);
-        reservationRepository.deleteById(idResevation);
+    public Reservation deleteReservation(Long idReservation) throws Exception {
+        Reservation reservation = getReservationById(idReservation);
+        reservationRepository.deleteById(idReservation);
         return reservation;
 
     }
-    public Reservation getReservationById(String idReservation) throws Exception {
+    public Reservation getReservationById(Long idReservation) throws Exception {
         Optional<Reservation> reservationOptional = reservationRepository.findById(idReservation);
         if (reservationOptional.isPresent())
         {
             return reservationOptional.get();
         }
         else
-            throw new RuntimeException("Resevation not found.");
+            throw new RuntimeException("Reservation not found.");
     }
 
     @Override
-    public double calculationAmount(Vehicle vehicle) throws Exception {
+    public double calculatePrice(Long idReservation) throws Exception {
 
-        float coeffVehicule = vehicle.getPriceCoeff();
+        float coeffVehicule = getReservationById(idReservation).getVehicle().getPriceCoeff();
        return coeffVehicule * 100;
     }
 
     @Override
-    public List<Reservation> getAllReservation() {
+    public List<Reservation> getAllReservations() {
         return reservationRepository.findAll();
+    }
+
+    @Override
+    public List<Reservation> getReservationsByCustomerId(Long idCustomer) throws Exception {
+
+        List<Reservation> reservations = null;
+
+        reservations = reservationRepository.findAllByCustomerIdUser(idCustomer);
+
+        return reservations;
     }
 }

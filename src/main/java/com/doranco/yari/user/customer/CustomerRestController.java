@@ -1,6 +1,5 @@
-package com.doranco.yari.user;
+package com.doranco.yari.user.customer;
 
-import com.doranco.yari.vehicle.Vehicle;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
@@ -78,4 +77,6 @@ public class CustomerRestController {
         }
         return customer;
     }
+
+
 }

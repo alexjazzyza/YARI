@@ -1,8 +1,10 @@
 package com.doranco.yari.user;
 
+import com.doranco.yari.user.authority.Authority;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,9 +20,28 @@ public abstract class User {
     private Long idUser;
     private String lastName;
     private String firstName;
-    private String login;
+    @Column(length = 30)
+    private String username;
     private String password;
     private String address;
     private String email;
+
+    private boolean accountNonExpired;
+    private boolean accountNonLocked;
+    private boolean credentialsNonExpired;
+    private boolean enabled;
+
+    @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Authority> authorities;
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+        this.accountNonExpired = true;
+        this.accountNonLocked = true;
+        this.credentialsNonExpired = true;
+        this.enabled = true;
+    }
+
 
 }

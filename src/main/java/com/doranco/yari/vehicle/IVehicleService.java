@@ -1,5 +1,6 @@
 package com.doranco.yari.vehicle;
 
+import com.doranco.yari.agency.ECities;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -14,8 +15,6 @@ public interface IVehicleService {
     public Vehicle getVehicleById(String refVehicle) throws Exception;
     public Vehicle getVehiclesByType(EVehicleType vehicleType);
     public Page<Vehicle> getAllVehicles(Pageable pageable);
+    public List<Vehicle> getAvailableVehicle(ECities agency, Date dateDeb , Date dateF , EVehicleType t) throws Exception;
 
-    public List<Vehicle>getAvailbaleVehicle(Agency agency, Date dateDeb , Date dateF , EVehicleType t) throws Exception;
-
-    public Vehicle changeVehicleAvailability(String refVehicle, boolean availability);
 }

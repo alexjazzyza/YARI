@@ -1,8 +1,13 @@
 package com.doranco.yari.vehicle;
 
+import com.doranco.yari.agency.ECities;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/vehicles")
@@ -74,5 +79,22 @@ public class VehicleRestController {
             throw new RuntimeException(e);
         }
         return v;
+    }
+
+    @GetMapping("/getAvailableVehicles")
+    public List<Vehicle> getAvailableVehicle(@RequestParam(name="agency") ECities agency,
+                                             @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam(name="dateDeb")Date dateDeb,
+                                             @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam(name="dateFin")Date dateFin,
+                                             @RequestParam(name="type")EVehicleType vehicleType) throws Exception {
+
+        List<Vehicle> vehicles = null;
+
+        try {
+            vehicles = vehicleService.getAvailableVehicle(agency, dateDeb, dateFin, vehicleType);
+        } catch (Exception e) {
+            throw new RuntimeException("No available vehicle.");
+        }
+
+        return vehicles;
     }
 }

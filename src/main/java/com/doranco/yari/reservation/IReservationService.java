@@ -1,16 +1,13 @@
 package com.doranco.yari.reservation;
 
-import com.doranco.yari.vehicle.Vehicle;
-
 import java.util.List;
 
 public interface IReservationService {
     public Reservation saveReservation(Reservation reservation) throws Exception;
-    public Reservation updateResevation(Reservation reservation) throws Exception;
-    public Reservation removeReservation(String idResevation) throws Exception;
-    public  double calculationAmount(Vehicle vehicle) throws Exception;
-;
+    public Reservation updateReservation(Reservation reservation) throws Exception;
+    public Reservation deleteReservation(Long idReservation) throws Exception;
+    public  double calculatePrice(Long idReservation) throws Exception;
+    public List<Reservation> getAllReservations() throws Exception;
+    public List<Reservation> getReservationsByCustomerId(Long idCustomer) throws Exception;
 
-
-    List<Reservation> getAllReservation() throws Exception;
 }

@@ -1,4 +1,4 @@
-package com.doranco.yari.user;
+package com.doranco.yari.user.manager;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
