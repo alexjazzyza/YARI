@@ -31,7 +31,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests()
+        http.csrf().disable().authorizeRequests()
                 .antMatchers("/", "/index.html", "/css/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -51,7 +51,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         return provider;
     }
 
-    @Override
+    /*@Override
     @Bean
     protected UserDetailsService userDetailsService() {
 
@@ -59,5 +59,5 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         UserDetails manager = User.builder().username("Manager").password(passwordEncoder.encode("manager")).roles("MANAGER").build();
 
         return new InMemoryUserDetailsManager(admin, manager);
-    }
+    }*/
 }

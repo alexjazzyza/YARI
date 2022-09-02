@@ -13,7 +13,6 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Reservation {
 
     @Id

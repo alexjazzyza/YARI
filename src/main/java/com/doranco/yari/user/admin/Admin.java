@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
 public class Admin extends User {
 
     public Admin(String username, String password){
