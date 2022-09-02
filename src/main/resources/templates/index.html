@@ -9,8 +9,8 @@
     <meta charset="UTF-8">
     <title>Products List</title>
 
-    <script type="text/javascript" src="../static/js/datePicker.js"></script>
-    <link rel="stylesheet" href="../static/css/datePicker.css">
+    <script type="text/javascript" th:src="@{js/datePicker.js}"></script>
+    <!--<link rel="stylesheet" th:href="@{css/datePickerCustom.css}" href="../static/css/datePickerCustom.css">-->
 
 
 </head>
@@ -28,33 +28,48 @@
 <div layout:fragment="page_content">
     <div class="container mt-5">
         <form th:action="@{/searchVehicles}" method="post" th:object="${reservation}">
-            <div class="row g-3 align-items-center">
-                <div class="col-auto">
-                    <input type="text" id="agencyCity" class="form-control" placeholder="Ville" name="city">
-                </div>
-                <div class="col-auto">
-                    <input type="text" id="vehicleType" class="form-control" placeholder="Type de véhicule">
-                </div>
-                <div class="col-auto">
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-                        <input type="date" id="startDate"class="form-control" name="startDate" placeholder="Date de départ">
+            <div class="row border justify-content-center">
+                    <div class="col-auto">
+                        <select class="form-select" type="text" id="city" name="city" >
+                            <option selected>Ville de départ</option>
+                            <option value="PARIS">Paris</option>
+                            <option value="LYON">Lyon</option>
+                            <option value="BORDEAUX">Bordeaux</option>
+                            <option value="LILLE">Lille</option>
+                            <option value="TOULOUSE">Toulouse</option>
+                            <option value="STRASBOURG">Strasbourg</option>
+                            <option value="NICE">Nice</option>
+                            <option value="MARSEILLE">Marseille</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <select class="form-select" type="text" id="vehicleType" name="vehicleType" >
+                            <option selected>Type de véhicule</option>
+                            <option value="STANDARD">Standard</option>
+                            <option value="UTILITY">Utilitaire</option>
+                            <option value="PRESTIGE">Prestige</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <!--<div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>-->
+                            <input type="date" id="startDate"class="form-control" name="startDate" placeholder="Date de départ">
+                        <!--</div>-->
+                    </div>
+                    <div class="col-auto">
+                        <!--<div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>-->
+                            <input type="date" id="endDate" class="form-control" name="endDate" placeholder="Date de retour">
+                        <!--</div>-->
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">Rechercher</button>
                     </div>
                 </div>
-                <div class="col-auto">
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-                        <input type="date" id="endDate" class="form-control" name="endDate" placeholder="Date de retour">
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-primary">Rechercher</button>
-                </div>
-            </div>
         </form>
     </div>
 </div>

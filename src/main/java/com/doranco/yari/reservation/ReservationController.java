@@ -37,14 +37,14 @@ public class ReservationController {
     }
 
     @PostMapping(path = "/searchVehicles")
-    public String searchVehicle(@Valid Reservation reservation, BindingResult result, Model model, @RequestParam(name="city") String cityString){
+    public String searchVehicle(@Valid Reservation reservation, BindingResult result, Model model, @RequestParam(name="city") String cityString, @RequestParam(name="vehicleType") String vehicleTypeString){
         if(result.hasErrors()) return "index" ;
         ECities city = ECities.valueOf(cityString);
-        Date dateDeb=reservation.getStartDate();
-        Date dateFin=reservation.getEndDate();
-        //EVehicleType type=reservation.getVehicle().getVehicleType();
+        Date dateDeb = reservation.getStartDate();
+        Date dateFin = reservation.getEndDate();
+        EVehicleType vehicleType = EVehicleType.valueOf(vehicleTypeString);
         try {
-            List<Vehicle> availableVehicle = vehicleService.getAvailableVehicle(city, dateDeb, dateFin, EVehicleType.UTILITY);
+            List<Vehicle> availableVehicle = vehicleService.getAvailableVehicle(city, dateDeb, dateFin, vehicleType);
             model.addAttribute("availableVehicles", availableVehicle);
             return "searchVehicles";
         }catch (Exception e){

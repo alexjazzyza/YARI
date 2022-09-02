@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Vehicle List</title>
-    <link rel="stylesheet" href="../static/css/card.css">
+    <link rel="stylesheet" type="text/css" th:href="@{css/card.css}" href="../static/css/card.css">
 </head>
 <body>
 <div layout:fragment="page_content">
@@ -38,7 +38,7 @@
                                 <div class="ad-title m-auto">
                                     <h5 th:text="${v.brand}"></h5>
                                 </div>
-                                <a class="ad-btn" href="#">View</a>
+                                <a class="btn btn-primary" th:href="@{/}">Réserver</a>
                             </div>
                         </div>
                     </div>
