@@ -7,13 +7,14 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Reservation {
+public class Reservation implements Serializable {
 
     @Id
     @Column(length = 10)
@@ -30,11 +31,11 @@ public class Reservation {
     private Date endDate = new Date();
 
     @ManyToOne
-    private Vehicle vehicle;
+    private Vehicle vehicle = new Vehicle();
 
     @ManyToOne
     private Customer customer;
 
     @ManyToOne
-    private Agency agency;
+    private Agency agency = new Agency();
 }

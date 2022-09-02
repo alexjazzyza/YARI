@@ -1,6 +1,9 @@
 package com.doranco.yari.reservation;
 
+import com.doranco.yari.agency.ECities;
+import com.doranco.yari.vehicle.EVehicleType;
 import com.doranco.yari.vehicle.Vehicle;
+import com.doranco.yari.vehicle.VehicleRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

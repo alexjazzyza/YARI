@@ -1,5 +1,10 @@
 package com.doranco.yari.reservation;
 
+import com.doranco.yari.agency.ECities;
+import com.doranco.yari.vehicle.EVehicleType;
+import com.doranco.yari.vehicle.Vehicle;
+
+import java.util.Date;
 import java.util.List;
 
 public interface IReservationService {

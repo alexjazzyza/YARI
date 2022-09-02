@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www/ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Subscription</title>
+</head>
+<body>
+  <div layout:fragment="page_content">
+    <div class="container mt-5 text-center">
+      <div class="mb-3">
+        <img src="../static/img/imageReservation.jpg" th:src="@{img/imageReservation.jpg}" width="360" height="237">
+      </div>
+      <form th:action="@{/subscription}" method="post" th:object="${customer}">
+        <div class="form-group">
+          <input type="text" class="form-control mb-3" id="username" aria-describedby="emailHelp" placeholder="Pseudo">
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control mb-3" id="password" placeholder="Mot de passe">
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control mb-3" id="passwordConfirmation" placeholder="Confirmer le mot de passe">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control mb-3" id="lastName" placeholder="Nom">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control mb-3" id="firstName" placeholder="Prénom">
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-control mb-3" id="email" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control mb-3" id="address" placeholder="Adresse">
+        </div>
+        <button type="submit" class="btn btn-primary">S'inscrire</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

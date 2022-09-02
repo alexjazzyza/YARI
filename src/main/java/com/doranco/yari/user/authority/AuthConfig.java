@@ -24,7 +24,7 @@ public class AuthConfig {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @Bean
+    /*@Bean
     CommandLineRunner init_user() {
         return args -> {
             User user_admin = userRepository.save(new Admin("admin", passwordEncoder.encode("admin")));
@@ -120,5 +120,5 @@ public class AuthConfig {
             authorityRepository.save(auth_reservation_delete);
 
         };
-    }
+    }*/
 }

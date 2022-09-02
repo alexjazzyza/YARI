@@ -1,5 +1,6 @@
 package com.doranco.yari.reservation;
 
+import com.doranco.yari.vehicle.IVehicleService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -8,8 +9,12 @@ import java.util.List;
 @RequestMapping("/api/reservations")
 public class ReservationRestController {
     private final IReservationService reservationService;
-    public ReservationRestController(IReservationService ReservationService) {
+
+    private final IVehicleService vehicleService;
+
+    public ReservationRestController(IReservationService ReservationService, IVehicleService vehicleService) {
         this.reservationService = ReservationService;
+        this.vehicleService = vehicleService;
     }
 
     @GetMapping

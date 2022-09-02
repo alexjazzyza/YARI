@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www/ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="template"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Vehicle List</title>
+    <link rel="stylesheet" href="../static/css/card.css">
+</head>
+<body>
+<div layout:fragment="page_content">
+    <div class="container mt-5">
+        <div class="col-4">
+            filtres secondaires
+        </div>
+        <div class="col-8">
+            <th:text value="${searchVehicles.size()}"></th:text>
+            <div th:each="v:${availableVehicles}">
+                <div class="row" id="ads">
+                    <!-- Category Card -->
+                    <div class="col-md-4">
+                        <div class="card rounded">
+                            <div class="card-image">
+                                <!--<span class="card-notify-badge">Low KMS</span>
+                                <span class="card-notify-year">2018</span>-->
+                                <img class="img-fluid"
+                                     src="https://imageonthefly.autodatadirect.com/images/?USER=eDealer&PW=edealer872&IMG=USC80HOC011A021001.jpg&width=440&height=262"
+                                     alt="Alternate Text"/>
+                            </div>
+                            <div class="card-image-overlay m-auto">
+                                <span class="card-detail-badge" th:text="${v.priceCoeff}"></span>
+                                <span class="card-detail-badge" th:text="${v.gearbox}"></span>
+                            </div>
+                            <div class="card-body text-center">
+                                <div class="ad-title m-auto">
+                                    <h5 th:text="${v.brand}"></h5>
+                                </div>
+                                <a class="ad-btn" href="#">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

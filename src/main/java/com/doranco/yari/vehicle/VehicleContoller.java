@@ -3,8 +3,8 @@ package com.doranco.yari.vehicle;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-@Controller
-@RequestMapping("/")
+/*@Controller
+@RequestMapping("/")*/
 public class VehicleContoller {
 
     private final IVehicleService iVS;
@@ -12,11 +12,11 @@ public class VehicleContoller {
     public VehicleContoller(IVehicleService iVS) {
         this.iVS = iVS;
     }
-    @GetMapping
+   /* @GetMapping
     public String getProductsPage(    ){
 
 
 
         return "chaine";
-    }
+    }*/
 }
