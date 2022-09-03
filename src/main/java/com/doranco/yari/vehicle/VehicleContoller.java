@@ -1,16 +1,13 @@
 package com.doranco.yari.vehicle;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 /*@Controller
 @RequestMapping("/")*/
 public class VehicleContoller {
 
-    private final IVehicleService iVS;
+    private final IVehicleService vehicleService;
 
-    public VehicleContoller(IVehicleService iVS) {
-        this.iVS = iVS;
+    public VehicleContoller(IVehicleService vehicleService) {
+        this.vehicleService = vehicleService;
     }
    /* @GetMapping
     public String getProductsPage(    ){

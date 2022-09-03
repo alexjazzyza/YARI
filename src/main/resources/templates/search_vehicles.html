@@ -17,9 +17,8 @@
             filtres secondaires
         </div>
         <div class="col-8">
-            <th:text th:value="${reservation.getStartDate()}"></th:text>
             <div th:each="vehicle:${availableVehicles}">
-                <form th:action="@{/saveReservation}" method="post" th:object="${vehicle}">
+                <form th:action="@{/saveReservation}" method="post" th:object="${reservation}">
                     <div class="row" id="ads">
                         <!-- Category Card -->
                         <div class="col-md-4">
@@ -39,16 +38,10 @@
                                     <div>
                                         <h5 th:text="${vehicle.brand} + ' ' + ${vehicle.model}">test</h5>
                                     </div>
-                                    <input type="hidden" th:name="refVehicle" id="refVehicle" th:value="${vehicle.refVehicle}"></input>
-                                    <input type="hidden" th:name="brand" id="brand" th:value="${vehicle.brand}"></input>
-                                    <input type="hidden" th:name="model" id="model" th:value="${vehicle.model}"></input>
-                                    <input type="hidden" th:name="vehicleType" id="vehicleType" th:value="${vehicle.vehicleType}"></input>
-                                    <input type="hidden" th:name="gearbox" id="gearbox" th:value="${vehicle.gearbox}"></input>
-                                    <input type="hidden" th:name="nbSeats" id="nbSeats" th:value="${vehicle.nbSeats}"></input>
-                                    <input type="hidden" th:name="nbDoors" id="nbDoors" th:value="${vehicle.nbDoors}"></input>
-                                    <input type="hidden" th:name="volume" id="volume" th:value="${vehicle.volume}"></input>
-                                    <input type="hidden" th:name="priceCoeff" id="priceCoeff" th:value="${vehicle.priceCoeff}"></input>
-                                    <!--<input type="hidden" th:name="reservation" id="reservation" th:field="${reservation}"></input>-->
+                                    <input type="hidden" name="refVehicle" id="refVehicle" th:value="${vehicle.refVehicle}"></input>
+                                    <input type="hidden" name="city" id="city" th:value="${city}"></input>
+                                    <input type="hidden" name="startDate" id="startDate" th:value="${startDate}"></input>
+                                    <input type="hidden" name="endDate" id="endDate" th:value="${endDate}"></input>
                                     <button type="submit" class="btn btn-primary">Réserver</button>
                                 </div>
                             </div>

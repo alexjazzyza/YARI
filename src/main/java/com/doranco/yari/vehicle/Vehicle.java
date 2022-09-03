@@ -2,7 +2,6 @@ package com.doranco.yari.vehicle;
 
 import com.doranco.yari.agency.Agency;
 import com.doranco.yari.reservation.Reservation;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 
@@ -18,8 +17,9 @@ import java.util.List;
 public class Vehicle {
 
     @Id
-    @Column(name="ref_vehicle", length = 10)
-    private String refVehicle;
+    @Column(name="refVehicle", length = 10)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long refVehicle;
     private String brand;
     private String model;
     @Enumerated(EnumType.STRING)
@@ -34,7 +34,7 @@ public class Vehicle {
     private List<Reservation> reservations = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name="agency")
+    @JoinColumn(name="agency", nullable = false)
     private Agency agency;
 
 }

@@ -11,8 +11,8 @@ public interface IVehicleService {
 
     public Vehicle saveVehicle(Vehicle vehicle);
     public Vehicle updateVehicle(Vehicle vehicle);
-    public Vehicle deleteVehicle(String refVehicle) throws Exception;
-    public Vehicle getVehicleById(String refVehicle) throws Exception;
+    public Vehicle deleteVehicle(Long refVehicle) throws Exception;
+    public Vehicle getVehicleById(Long refVehicle) throws Exception;
     public Vehicle getVehiclesByType(EVehicleType vehicleType);
     public Page<Vehicle> getAllVehicles(Pageable pageable);
     public List<Vehicle> getAvailableVehicle(ECities agency, Date dateDeb , Date dateF , EVehicleType t) throws Exception;

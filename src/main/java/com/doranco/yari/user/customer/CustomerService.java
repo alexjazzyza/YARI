@@ -11,12 +11,14 @@ public class CustomerService implements ICustomerService {
 
     private final ICustomerRepository customerRepository;
 
-    public CustomerService(ICustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
+    public CustomerService(ICustomerRepository customerRepository) { this.customerRepository = customerRepository; }
 
     @Override
     public Customer saveCustomer(Customer customer) {
+
+        customer.setAccountNonExpired(true);
+        customer.setAccountNonLocked(true);
+        customer.setEnabled(true);
         return customerRepository.save(customer);
     }
 

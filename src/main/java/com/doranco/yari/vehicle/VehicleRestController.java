@@ -58,7 +58,7 @@ public class VehicleRestController {
     }
 
     @DeleteMapping("/{refVehicle}")
-    public Vehicle deleteVehicle(@PathVariable String refVehicle) {
+    public Vehicle deleteVehicle(@PathVariable Long refVehicle) {
 
         Vehicle v = null;
         try {
@@ -70,7 +70,7 @@ public class VehicleRestController {
     }
 
     @GetMapping("/getById")
-    public Vehicle getVehicleById(@RequestParam(name="refVehicle") String refVehicle)
+    public Vehicle getVehicleById(@RequestParam(name="refVehicle") Long refVehicle)
     {
         Vehicle v = null;
         try {

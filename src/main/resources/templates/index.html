@@ -7,7 +7,7 @@
 >
 <head>
     <meta charset="UTF-8">
-    <title>Products List</title>
+    <title>Index</title>
 
     <script type="text/javascript" th:src="@{js/datePicker.js}"></script>
     <!--<link rel="stylesheet" th:href="@{css/datePicker.css}" href="../static/css/datePicker.css">-->
@@ -27,10 +27,10 @@
 
 <div layout:fragment="page_content">
     <div class="container mt-5">
-        <form th:action="@{/searchVehicles}" method="post" th:object="${reservation}">
-            <div class="row border justify-content-center">
+        <form th:action="@{/search_vehicles}" method="post">
+            <div class="row justify-content-center">
                     <div class="col-auto">
-                        <select class="form-select" type="text" id="city" name="city" >
+                        <select class="form-select" type="text" id="city" name="city">
                             <option selected>Ville de départ</option>
                             <option value="PARIS">Paris</option>
                             <option value="LYON">Lyon</option>
@@ -43,7 +43,7 @@
                         </select>
                     </div>
                     <div class="col-auto">
-                        <select class="form-select" type="text" id="vehicleType" name="vehicleType" >
+                        <select class="form-select" type="text" id="vehicleType" name="vehicleType">
                             <option selected>Type de véhicule</option>
                             <option value="STANDARD">Standard</option>
                             <option value="UTILITY">Utilitaire</option>
@@ -55,7 +55,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>-->
-                            <input type="date" id="startDate"class="form-control" name="startDate" placeholder="Date de départ">
+                            <input type="date" class="form-control" id="startDate" name="startDate" placeholder="Date de départ">
                         <!--</div>-->
                     </div>
                     <div class="col-auto">
@@ -63,7 +63,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>-->
-                            <input type="date" id="endDate" class="form-control" name="endDate" placeholder="Date de retour">
+                            <input type="date" class="form-control" id="endDate" name="endDate" placeholder="Date de retour">
                         <!--</div>-->
                     </div>
                     <div class="col-auto">

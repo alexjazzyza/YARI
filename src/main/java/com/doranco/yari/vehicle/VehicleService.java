@@ -34,14 +34,14 @@ public class VehicleService implements IVehicleService {
     }
 
     @Override
-    public Vehicle deleteVehicle(String refVehicle) throws Exception {
+    public Vehicle deleteVehicle(Long refVehicle) throws Exception {
         Vehicle vehicle = getVehicleById(refVehicle);
         vehicleRepository.deleteById(refVehicle);
         return vehicle;
     }
 
     @Override
-    public Vehicle getVehicleById(String refVehicle) throws Exception {
+    public Vehicle getVehicleById(Long refVehicle) throws Exception {
         Optional<Vehicle> vehicleOptional = vehicleRepository.findById(refVehicle);
         if (vehicleOptional.isPresent()) {
             return vehicleOptional.get();
@@ -66,18 +66,12 @@ public class VehicleService implements IVehicleService {
         List<Vehicle> availableVehicles = new ArrayList<>();
 
         List<Vehicle> listVehicleBytype = new ArrayList<>();
-
         listVehicleBytype = vehicleRepository.findVehicleByVehicleType(t);
-
-        //  List<Reservation> listeDesReservation=new ArrayList<>();
 
         for (Vehicle v :
                 listVehicleBytype) {
 
             if (v.getAgency().getCity().name().equals(city.name())) {
-
-                //listeDesReservation=v.getReservations();
-
 
                 int i = 0;
                 LocalDate fromDateCustomer, toDateCustomer = null;
@@ -88,9 +82,6 @@ public class VehicleService implements IVehicleService {
                     current = current.plusDays(1);
 
                     LocalDate dateDebutRes, dateFinRes = null;
-
-                    //for (Reservation r:listeDesReservation) {
-
 
                     for (Reservation r : v.getReservations()) {
                         dateDebutRes = r.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();

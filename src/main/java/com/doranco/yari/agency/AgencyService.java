@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,7 +40,7 @@ public class AgencyService implements IAgencyService{
     }
 
     @Override
-    public Agency getAgencyById(Long idAgency) {
+    public Agency getAgencyById(Long idAgency) throws Exception{
         Optional<Agency> agencyOptional = agencyRepository.findById(idAgency);
         if (agencyOptional.isPresent())
         {
@@ -49,5 +50,21 @@ public class AgencyService implements IAgencyService{
         {
             throw new RuntimeException("Agency not found.");
         }
+    }
+
+    @Override
+    public Agency getAgencyByName(String agencyName) throws Exception{
+        return null;
+    }
+
+    @Override
+    public List<Agency> getAgenciesByCity(ECities city) throws Exception{
+
+        List<Agency> agencies = agencyRepository.findAllByCity(city);
+        if (agencies.isEmpty())
+        {
+            throw new RuntimeException("Agency not found");
+        }
+        return agencies;
     }
 }

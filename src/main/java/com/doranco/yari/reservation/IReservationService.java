@@ -1,6 +1,8 @@
 package com.doranco.yari.reservation;
 
+import com.doranco.yari.agency.Agency;
 import com.doranco.yari.agency.ECities;
+import com.doranco.yari.user.customer.Customer;
 import com.doranco.yari.vehicle.EVehicleType;
 import com.doranco.yari.vehicle.Vehicle;
 
@@ -14,5 +16,6 @@ public interface IReservationService {
     public  double calculatePrice(Long idReservation) throws Exception;
     public List<Reservation> getAllReservations() throws Exception;
     public List<Reservation> getReservationsByCustomerId(Long idCustomer) throws Exception;
+    public Reservation makeReservation(Date startDate, Date endDate, Agency agency, Vehicle vehicle, Customer customer);
 
 }

@@ -1,6 +1,8 @@
 package com.doranco.yari.reservation;
 
+import com.doranco.yari.agency.Agency;
 import com.doranco.yari.agency.ECities;
+import com.doranco.yari.user.customer.Customer;
 import com.doranco.yari.vehicle.EVehicleType;
 import com.doranco.yari.vehicle.Vehicle;
 import com.doranco.yari.vehicle.VehicleRepository;
@@ -69,5 +71,26 @@ public class ReservationService implements IReservationService {
         reservations = reservationRepository.findAllByCustomerIdUser(idCustomer);
 
         return reservations;
+    }
+
+    @Override
+    public Reservation makeReservation(Date startDate, Date endDate, Agency agency, Vehicle vehicle, Customer customer) {
+
+        Reservation reservation = new Reservation();
+
+        reservation.setStartDate(startDate);
+        reservation.setEndDate(endDate);
+        reservation.setPrice(100);
+        reservation.setAgency(agency);
+        reservation.setVehicle(vehicle);
+        reservation.setCustomer(customer);
+
+        try {
+            reservation = saveReservation(reservation);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return reservation;
     }
 }

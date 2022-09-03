@@ -19,6 +19,10 @@ public class Agency {
     @Column(name="id_agency", length = 10)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAgency;
+
+    @Column(length = 50)
+    private String agencyName;
+
     @Enumerated(EnumType.STRING)
     private ECities city;
 
