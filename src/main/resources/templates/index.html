@@ -10,7 +10,7 @@
     <title>Products List</title>
 
     <script type="text/javascript" th:src="@{js/datePicker.js}"></script>
-    <!--<link rel="stylesheet" th:href="@{css/datePicker.css}" href="../static/css/datePicker.css">-->
+    <link rel="stylesheet" th:href="@{css/datePicker.css}" href="../static/css/datePicker.css">
 
 
 </head>
@@ -26,9 +26,17 @@
 <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
 
 <div layout:fragment="page_content">
-    <div class="container mt-5">
-        <form th:action="@{/searchVehicles}" method="post" th:object="${reservation}">
-            <div class="row border justify-content-center">
+
+
+
+
+    <figure class="cuisinaccueil">
+        <div>
+            <img src="../static/img/home_img.jpg" th:src="@{img/home_img.jpg}" class="photo-opacity" >
+        </div>
+        <section id="calque">
+            <form th:action="@{/searchVehicles}" class="form" method="post" th:object="${reservation}">
+                <div class="row border justify-content-center">
                     <div class="col-auto">
                         <select class="form-select" type="text" id="city" name="city" >
                             <option selected>Ville de départ</option>
@@ -55,7 +63,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>-->
-                            <input type="date" id="startDate"class="form-control" name="startDate" placeholder="Date de départ">
+                        <input type="date" id="startDate"class="form-control" name="startDate" placeholder="Date de départ">
                         <!--</div>-->
                     </div>
                     <div class="col-auto">
@@ -63,15 +71,38 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>-->
-                            <input type="date" id="endDate" class="form-control" name="endDate" placeholder="Date de retour">
+                        <input type="date" id="endDate" class="form-control" name="endDate" placeholder="Date de retour">
                         <!--</div>-->
                     </div>
                     <div class="col-auto">
-                        <button type="submit" class="btn btn-primary">Rechercher</button>
+                        <button type="submit" class="search">Rechercher</button>
                     </div>
                 </div>
-        </form>
-    </div>
+            </form>
+
+        </section>
+    </figure>
+
+    <section class="mt-2">
+        <div class="row">
+            <div class="col-4 ml-5 text-end"><img src="../static/img/logo2.jpg" th:src="@{img/logo2.jpg}" width="300" height="200"></div>
+            <div class="col-6">
+                <h2> Presentation <b>YARI</b></h2>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over
+                    2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney
+                    College in Virginia, looked up one of the more obscure Latin words, consectetur,
+                    from a Lorem Ipsum passage, and going through the cites of the word in classical literature,
+                    discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de
+                    Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
+                    This book is a treatise on the theory of ethics, very popular during the Renaissance.
+                    The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+
+                    The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. </p>
+            </div>
+            <div class=""col-2></div>
+        </div>
+    </section>
+
 </div>
 
 <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>

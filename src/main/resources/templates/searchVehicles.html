@@ -12,9 +12,43 @@
 </head>
 <body>
 <div layout:fragment="page_content">
-    <div class="container mt-5">
-        <div class="col-4">
-            filtres secondaires
+    <div class="container mt-5 border">
+        <div class="col-4 border">
+            <h4>Recherceh Avancée</h4>
+            <h5>Catégorie du véhicule</h5>
+            <div class="ml-2">
+                <input type="checkbox" name="" th:text="" th:value="">Véhicules Standards
+            </div>
+            <div class="ml-2">
+                <input type="checkbox" name="" th:text="" th:value="">Véhicules Utilitaires
+            </div>
+            <div class="ml-2">
+                <input type="checkbox" name="" th:text="" th:value="">Véhicules Prestiges
+            </div>
+            <div class="col-auto">
+            <h5>Agence</h5>
+            <select class="form-select" type="text" id="city" name="city" >
+                    <option selected>Ville de départ</option>
+                    <option value="PARIS">Paris</option>
+                    <option value="LYON">Lyon</option>
+                    <option value="BORDEAUX">Bordeaux</option>
+                    <option value="LILLE">Lille</option>
+                    <option value="TOULOUSE">Toulouse</option>
+                    <option value="STRASBOURG">Strasbourg</option>
+                    <option value="NICE">Nice</option>
+                    <option value="MARSEILLE">Marseille</option>
+                </select>
+            </div>
+            <h5>Nombre de places</h5>
+            <div class="ml-2">
+                <input type="checkbox" name=""th:text="" th:value="">2 places
+            </div>
+            <div class="ml-2">
+                <input type="checkbox" name="" th:text="" th:value="">5 places
+            </div>
+            <div class="ml-2">
+                <input type="checkbox" name="" th:text="" th:value="">7 places
+            </div>
         </div>
         <div class="col-8">
             <th:text th:value="${reservation.getStartDate()}"></th:text>
