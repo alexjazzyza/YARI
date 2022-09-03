@@ -1,7 +1,10 @@
 package com.doranco.yari.user.customer;
 
+import com.doranco.yari.user.authority.Authority;
+import com.doranco.yari.user.authority.AuthorityRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -10,16 +13,46 @@ import java.util.Optional;
 public class CustomerService implements ICustomerService {
 
     private final ICustomerRepository customerRepository;
+    private final AuthorityRepository authorityRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public CustomerService(ICustomerRepository customerRepository) { this.customerRepository = customerRepository; }
+    public CustomerService(ICustomerRepository customerRepository, AuthorityRepository authorityRepository, PasswordEncoder passwordEncoder) {
+        this.customerRepository = customerRepository;
+        this.authorityRepository = authorityRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public Customer saveCustomer(Customer customer) {
 
         customer.setAccountNonExpired(true);
         customer.setAccountNonLocked(true);
+        customer.setCredentialsNonExpired(true);
         customer.setEnabled(true);
-        return customerRepository.save(customer);
+        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+
+        customer = customerRepository.save(customer);
+
+        Authority roleCustomer = authorityRepository.findAuthorityByName("ROLE_CUSTOMER");
+        roleCustomer.getUsers().add(customer);
+
+        Authority auth_vehicle_read = authorityRepository.findAuthorityByName("vehicle:read");
+        Authority auth_reservation_read = authorityRepository.findAuthorityByName("reservation:read");
+        Authority auth_reservation_write = authorityRepository.findAuthorityByName("reservation:write");
+        Authority auth_reservation_delete = authorityRepository.findAuthorityByName("reservation:delete");
+
+        auth_vehicle_read.getUsers().add(customer);
+        auth_reservation_read.getUsers().add(customer);
+        auth_reservation_write.getUsers().add(customer);
+        auth_reservation_delete.getUsers().add(customer);
+
+        authorityRepository.save(auth_vehicle_read);
+        authorityRepository.save(auth_reservation_read);
+        authorityRepository.save(auth_reservation_write);
+        authorityRepository.save(auth_reservation_delete);
+
+
+        return customer;
     }
 
     @Override

@@ -8,5 +8,6 @@ import java.util.List;
 public interface AuthorityRepository extends JpaRepository<Authority, Long> {
 
     public List<Authority> findAuthoritiesByUsersContains(User user);
+    public Authority findAuthorityByName(String name);
 
 }
