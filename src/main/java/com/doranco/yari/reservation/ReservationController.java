@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -40,16 +41,28 @@ public class ReservationController {
     public String searchVehicle(@Valid Reservation reservation, BindingResult result, Model model, @RequestParam(name="city") String cityString, @RequestParam(name="vehicleType") String vehicleTypeString){
         if(result.hasErrors()) return "index" ;
         ECities city = ECities.valueOf(cityString);
-        Date dateDeb = reservation.getStartDate();
-        Date dateFin = reservation.getEndDate();
+        Date startDate = reservation.getStartDate();
+        Date endDate = reservation.getEndDate();
         EVehicleType vehicleType = EVehicleType.valueOf(vehicleTypeString);
         try {
-            List<Vehicle> availableVehicle = vehicleService.getAvailableVehicle(city, dateDeb, dateFin, vehicleType);
+            List<Vehicle> availableVehicle = vehicleService.getAvailableVehicle(city, startDate, endDate, vehicleType);
             model.addAttribute("availableVehicles", availableVehicle);
+
+            model.addAttribute("vehicle", new Vehicle());
+
+            reservation.getAgency().setCity(city);
+            model.addAttribute("reservation", reservation);
             return "searchVehicles";
         }catch (Exception e){
             throw  new RuntimeException(e);
         }
+    }
+
+    @PostMapping(path = "/saveReservation")
+    public String saveReservation(@Valid Reservation reservation, @Valid Vehicle vehicle, BindingResult result, Model model) {
+
+        System.out.println("test");
+        return "/index";
     }
 }
 
