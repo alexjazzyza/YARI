@@ -46,6 +46,11 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public User getUserByName(Long idUser) throws Exception {
+        return null;
+    }
+
+    @Override
     public Page<User> getAllUsers(Pageable pageable) throws Exception{
         return userRepository.findAll(pageable);
     }

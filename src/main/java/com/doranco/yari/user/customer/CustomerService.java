@@ -4,6 +4,9 @@ import com.doranco.yari.user.authority.Authority;
 import com.doranco.yari.user.authority.AuthorityRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.jdbc.datasource.UserCredentialsDataSourceAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +28,7 @@ public class CustomerService implements ICustomerService {
     @Override
     public Customer saveCustomer(Customer customer) {
 
+        /*UserDetails userDetails = User.builder().username(customer.getUsername()).password(passwordEncoder.encode(customer.getPassword())).*/
         customer.setAccountNonExpired(true);
         customer.setAccountNonLocked(true);
         customer.setCredentialsNonExpired(true);
@@ -50,7 +54,6 @@ public class CustomerService implements ICustomerService {
         authorityRepository.save(auth_reservation_read);
         authorityRepository.save(auth_reservation_write);
         authorityRepository.save(auth_reservation_delete);
-
 
         return customer;
     }

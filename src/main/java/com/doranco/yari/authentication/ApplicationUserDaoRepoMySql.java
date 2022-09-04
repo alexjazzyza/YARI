@@ -35,7 +35,7 @@ public class ApplicationUserDaoRepoMySql implements ApplicationUserDao {
             grantedAuthorities.add(new SimpleGrantedAuthority(authority.getName()));
         }*/
 
-        ApplicationUserDetail userDetail = new ApplicationUserDetail(user.getPassword(), user.getUsername(), grantedAuthorities, true, true, true, true);
+        ApplicationUserDetail userDetail = new ApplicationUserDetail(user.getUsername(), user.getPassword(), grantedAuthorities, true, true, true, true);
         return userDetail;
     }
 }

@@ -1,8 +1,8 @@
 package com.doranco.yari.reservation;
 
 import com.doranco.yari.agency.Agency;
-import com.doranco.yari.agency.AgencyService;
 import com.doranco.yari.agency.ECities;
+import com.doranco.yari.agency.IAgencyService;
 import com.doranco.yari.user.customer.Customer;
 import com.doranco.yari.vehicle.EVehicleType;
 import com.doranco.yari.vehicle.IVehicleService;
@@ -23,9 +23,9 @@ public class ReservationController {
 
     private final IReservationService reservationService;
     private final IVehicleService vehicleService;
-    private final AgencyService agencyService;
+    private final IAgencyService agencyService;
 
-    public ReservationController(IReservationService reservationService, IVehicleService vehicleService, AgencyService agencyService) {
+    public ReservationController(IReservationService reservationService, IVehicleService vehicleService, IAgencyService agencyService) {
         this.reservationService = reservationService;
         this.vehicleService = vehicleService;
         this.agencyService = agencyService;
@@ -88,7 +88,6 @@ public class ReservationController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        agency = agencies.get(0);
 
         Vehicle vehicle = null;
         try {

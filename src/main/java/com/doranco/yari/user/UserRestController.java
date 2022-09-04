@@ -1,7 +1,11 @@
 package com.doranco.yari.user;
 
+import com.doranco.yari.authentication.ApplicationUserDaoRepoMySql;
+import com.doranco.yari.authentication.ApplicationUserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,20 +32,6 @@ public class UserRestController {
         }
         return users;
     }
-
-   /* @GetMapping
-    public Page<Manager> getManagerPage(@RequestParam(name="size", defaultValue="10") int size,
-                                  @RequestParam(name="page", defaultValue = "0") int page) {
-
-        Page<Manager> managers = null;
-
-        try {
-            managers = userService.getAllManagers(PageRequest.of(page, size));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return managers;
-    }*/
 
     @PostMapping
     public User saveUser(@RequestBody User user) {

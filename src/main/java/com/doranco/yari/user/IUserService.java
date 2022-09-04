@@ -9,5 +9,7 @@ public interface IUserService {
     public User updateUser(User user);
     public User deleteUser(Long idUser) throws Exception;
     public User getUserById(Long idUser) throws Exception;
+    public User getUserByName(Long idUser) throws Exception;
     public Page<User> getAllUsers(Pageable pageable) throws Exception;
+
 }
