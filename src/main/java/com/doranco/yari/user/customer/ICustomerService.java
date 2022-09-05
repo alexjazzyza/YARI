@@ -11,5 +11,6 @@ public interface ICustomerService {
     public Customer updateCustomer(Customer customer);
     public Customer deleteCustomer(Long idUser) throws Exception;
     public Customer getCustomerById(Long idUser) throws Exception;
+    public Customer getCustomerByUsername(String username);
     public Page<Customer> getAllCustomers(Pageable pageable);
 }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www/ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservations</title>
+</head>
+<body>
+  <div layout:fragment="page_content">
+    <div class="container mt-5 mb-5 ">
+      <table class="table table table-hover">
+        <thead>
+        <tr>
+          <th scope="col">Agence</th>
+          <th scope="col">Date de départ</th>
+          <th scope="col">Date de retour</th>
+          <th scope="col">Véhicule</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="clickable" th:each="reservation:${reservations}" th:onclick="reservation"> <!--th:action="@{/reservationDetails}"-->
+          <td th:text="${reservation.agency.agencyName}"/>
+          <td th:text="${reservation.startDate}"/>
+          <td th:text="${reservation.endDate}"/>
+          <td th:text="${reservation.vehicle.brand}"/>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</body>
+</html>

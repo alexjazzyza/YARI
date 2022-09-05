@@ -1,5 +1,6 @@
 package com.doranco.yari.user;
 
+import com.doranco.yari.user.customer.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -41,13 +42,21 @@ public class UserService implements IUserService {
         }
         else
         {
-                throw new RuntimeException("Manager not found.");
+            throw new RuntimeException("Manager not found.");
         }
     }
 
     @Override
-    public User getUserByName(Long idUser) throws Exception {
-        return null;
+    public User getUserByUsername(String username){
+        Optional<User> userOptional = userRepository.findUserByUsername(username);
+        if (userOptional.isPresent())
+        {
+            return userOptional.get();
+        }
+        else
+        {
+            throw new RuntimeException("User not found.");
+        }
     }
 
     @Override

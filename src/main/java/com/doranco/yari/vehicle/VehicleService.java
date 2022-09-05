@@ -68,10 +68,10 @@ public class VehicleService implements IVehicleService {
         List<Vehicle> listVehicleBytype = new ArrayList<>();
         listVehicleBytype = vehicleRepository.findVehicleByVehicleType(t);
 
-        for (Vehicle v :
+        for (Vehicle vehicle :
                 listVehicleBytype) {
 
-            if (v.getAgency().getCity().name().equals(city.name())) {
+            if (vehicle.getAgency().getCity().name().equals(city.name())) {
 
                 int i = 0;
                 LocalDate fromDateCustomer, toDateCustomer = null;
@@ -83,9 +83,9 @@ public class VehicleService implements IVehicleService {
 
                     LocalDate dateDebutRes, dateFinRes = null;
 
-                    for (Reservation r : v.getReservations()) {
-                        dateDebutRes = r.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                        dateFinRes = r.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    for (Reservation reservation : vehicle.getReservations()) {
+                        dateDebutRes = reservation.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                        dateFinRes = reservation.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                         if (current.isAfter(dateDebutRes) && current.isBefore(dateFinRes)) {
                             i = 1;
                             break;
@@ -93,7 +93,7 @@ public class VehicleService implements IVehicleService {
                     }
                 }
                 if (i == 0) {
-                    availableVehicles.add(v);
+                    availableVehicles.add(vehicle);
                 } else {
                     throw new RuntimeException("Vehicle not available.");
                 }

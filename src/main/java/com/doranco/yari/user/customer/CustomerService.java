@@ -84,6 +84,19 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
+    public Customer getCustomerByUsername(String username) {
+        Optional<Customer> customerOptional = customerRepository.findCustomerByUsername(username);
+        if (customerOptional.isPresent())
+        {
+            return customerOptional.get();
+        }
+        else
+        {
+            throw new RuntimeException("Customer not found.");
+        }
+    }
+
+    @Override
     public Page<Customer> getAllCustomers(Pageable pageable) {
         return customerRepository.findAll(pageable);
     }

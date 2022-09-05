@@ -4,7 +4,9 @@ import com.doranco.yari.user.authority.Authority;
 import com.doranco.yari.user.authority.AuthorityRepository;
 import com.doranco.yari.user.User;
 import com.doranco.yari.user.UserRepository;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,7 +17,6 @@ import java.util.stream.Collectors;
 public class ApplicationUserDaoRepoMySql implements ApplicationUserDao {
 
     private final UserRepository userRepository;
-
     private final AuthorityRepository authorityRepository;
 
     public ApplicationUserDaoRepoMySql(UserRepository userRepository, AuthorityRepository authorityRepository) {
@@ -26,7 +27,7 @@ public class ApplicationUserDaoRepoMySql implements ApplicationUserDao {
     @Override
     public ApplicationUserDetail getUserByUsername(String username) {
 
-        User user = userRepository.findByUsername(username);
+        User user = userRepository.findUserByUsername(username).get();
         List<Authority> authorities = authorityRepository.findAuthoritiesByUsersContains(user);
         Set<SimpleGrantedAuthority> grantedAuthorities = authorities .stream().map(authority -> new SimpleGrantedAuthority(authority.getName())).collect(Collectors.toSet());
 
