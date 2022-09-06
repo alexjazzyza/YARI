@@ -68,36 +68,42 @@ public class VehicleService implements IVehicleService {
         List<Vehicle> listVehicleBytype = new ArrayList<>();
         listVehicleBytype = vehicleRepository.findVehicleByVehicleType(t);
 
-        for (Vehicle vehicle :
-                listVehicleBytype) {
+        if (!dateDeb.after(dateF))
+        {
+            for (Vehicle vehicle :
+                    listVehicleBytype) {
 
-            if (vehicle.getAgency().getCity().name().equals(city.name())) {
+                if (vehicle.getAgency().getCity().name().equals(city.name())) {
 
-                int i = 0;
-                LocalDate fromDateCustomer, toDateCustomer = null;
-                fromDateCustomer = dateDeb.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                toDateCustomer = dateF.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                LocalDate current = fromDateCustomer;
-                while (current.isBefore(toDateCustomer)) {
-                    current = current.plusDays(1);
-
-                    LocalDate dateDebutRes, dateFinRes = null;
-
-                    for (Reservation reservation : vehicle.getReservations()) {
-                        dateDebutRes = reservation.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                        dateFinRes = reservation.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                        if (current.isAfter(dateDebutRes) && current.isBefore(dateFinRes)) {
-                            i = 1;
+                    int i = 0;
+                    Date current = dateDeb;
+                    while (current.before(dateF)) {
+                        Date dateDebutRes, dateFinRes = null;
+                        for (Reservation reservation : vehicle.getReservations()) {
+                            dateDebutRes = reservation.getStartDate(); //.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+                            dateFinRes = reservation.getEndDate();
+                            if ((current.after(dateDebutRes) || current.equals((dateDebutRes))) && (current.before(dateFinRes) || current.equals(dateFinRes))) {
+                                i = 1;
+                                break;
+                            }
+                        }
+                        if(i == 1)
+                        {
                             break;
                         }
+                        current = new Date(current.getTime() + (1000 * 60 * 60 * 24));
+                    }
+                    if (i == 0) {
+                        availableVehicles.add(vehicle);
                     }
                 }
-                if (i == 0) {
-                    availableVehicles.add(vehicle);
-                } else {
-                    throw new RuntimeException("Vehicle not available.");
-                }
             }
+        }
+        else
+        {
+            Vehicle empty = new Vehicle();
+            empty.setBrand("invalid");
+            availableVehicles.add(empty);
         }
         return availableVehicles;
     }

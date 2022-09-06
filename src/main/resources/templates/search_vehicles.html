@@ -14,18 +14,52 @@
 <div layout:fragment="page_content">
     <div class="container mt-5">
         <div class="col-4">
-            filtres secondaires
+            <div class="col-4 border">
+                <h4>Recherceh Avancée</h4>
+                <h5>Catégorie du véhicule</h5>
+                <div class="ml-2">
+                    <input type="checkbox" name="" th:text="" th:value="">Véhicules Standards
+                </div>
+                <div class="ml-2">
+                    <input type="checkbox" name="" th:text="" th:value="">Véhicules Utilitaires
+                </div>
+                <div class="ml-2">
+                    <input type="checkbox" name="" th:text="" th:value="">Véhicules Prestiges
+                </div>
+                <div class="col-auto">
+                    <h5>Agence</h5>
+                    <select class="form-select" type="text" id="city" name="city" >
+                        <option selected>Ville de départ</option>
+                        <option value="PARIS">Paris</option>
+                        <option value="LYON">Lyon</option>
+                        <option value="BORDEAUX">Bordeaux</option>
+                        <option value="LILLE">Lille</option>
+                        <option value="TOULOUSE">Toulouse</option>
+                        <option value="STRASBOURG">Strasbourg</option>
+                        <option value="NICE">Nice</option>
+                        <option value="MARSEILLE">Marseille</option>
+                    </select>
+                </div>
+                <h5>Nombre de places</h5>
+                <div class="ml-2">
+                    <input type="checkbox" name=""th:text="" th:value="">2 places
+                </div>
+                <div class="ml-2">
+                    <input type="checkbox" name="" th:text="" th:value="">5 places
+                </div>
+                <div class="ml-2">
+                    <input type="checkbox" name="" th:text="" th:value="">7 places
+                </div>
+            </div>
         </div>
         <div class="col-8">
             <div th:each="vehicle:${availableVehicles}">
-                <form th:action="@{/saveReservation}" method="post" th:object="${reservation}">
+                <form th:action="@{/saveReservation}" method="post">
                     <div class="row" id="ads">
                         <!-- Category Card -->
                         <div class="col-md-4">
                             <div class="card rounded">
                                 <div class="card-image">
-                                    <!--<span class="card-notify-badge">Low KMS</span>
-                                    <span class="card-notify-year">2018</span>-->
                                     <img class="img-fluid"
                                          src="https://imageonthefly.autodatadirect.com/images/?USER=eDealer&PW=edealer872&IMG=USC80HOC011A021001.jpg&width=440&height=262"
                                          alt="Alternate Text"/>
@@ -49,6 +83,9 @@
                     </div>
                 </form>
             </div>
+            <!--<div th:unless="${availableVehicles.get(0).brand == 'invalid'}">
+                <h3> Veuillez insérer des dates valides. La date de début doit être antérieure à la date de fin.</h3>
+            </div>-->
         </div>
     </div>
 </div>

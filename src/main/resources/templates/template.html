@@ -8,11 +8,18 @@
   <meta charset="UTF-8">
   <title>Top Menu</title>
   <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
+  <link rel="shortcut icon" href="../static/img/logo2.jpg" th:src="@{img/logo2.jpg}" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#"><img src="../static/img/logo2.jpg" th:src="@{img/logo2.jpg}" width="300" height="200"></a>
+    <a class="navbar-brand" href="#"><img src="../static/img/logo2.jpg" th:src="@{img/logo2.jpg}" width="70" height="60"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -22,13 +29,13 @@
           <a class="nav-link active" aria-current="page" th:href="@{~/index}">Accueil</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Agences</a>
+          <a class="nav-link" th:href="@{~/searchVehicles}">Agences</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" th:href="@{~/reservations}">Mes réservations</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
+          <a class="nav-link" th:href="@{~/contact}">Contact</a>
         </li>
       </ul>
       <span class="navbar-text">
@@ -50,8 +57,150 @@
   </div>
 </nav>
 <section layout:fragment="page_content"></section>
+<hr class="mt-1">
 
-<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+
+<div class="container my-5">
+  <!-- Footer -->
+  <footer
+          class="text-center text-lg-start text-white"
+          style="background-color: #929fba"
+  >
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: Links -->
+      <section class="">
+        <!--Grid row-->
+        <div class="row">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">
+              Nos Agences de  location de voitures Yari
+            </h6>
+            <h6>Paris</h6>
+            <p>Location véhicule Paris 11 - Bastille</p>
+            <p>Location véhicule Paris 12 - Bercy</p>
+            <p>Location véhicule Paris 15 - Convention</p>
+            <h6>Sud-Est</h6>
+            <p>Location véhicule Lyon Part Dieu</p>
+            <p>Location véhicule Marseille Gare</p>
+            <p>Location véhicule Rennes Gare</p>
+          </div>
+          <!-- Grid column -->
+
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Service proposé :</h6>
+            <p>
+              <a class="text-white">Voitures standards</a>
+            </p>
+            <p>
+              <a class="text-white">Voitures utilitaires</a>
+            </p>
+            <p>
+              <a class="text-white">Voitures de luxes</a>
+            </p>
+
+          </div>
+          <!-- Grid column -->
+
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+            <p><i class="fas fa-home mr-3"></i> PARIS, NY 10012, FR</p>
+            <p><i class="fas fa-envelope mr-3"></i> yari@gmail.com</p>
+            <p><i class="fas fa-phone mr-3"></i> + 01 23 45 95 67</p>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Suivez-nous sur les réseaux !</h6>
+
+            <!-- Facebook -->
+
+            <a
+                    class="btn btn-primary btn-floating m-1"
+                    style="background-color: #3b5998"
+                    href="#!"
+                    role="button"
+            ><i class="bi bi-facebook"></i>
+            </a>
+
+            <!-- Twitter -->
+
+            <a
+                    class="btn btn-primary btn-floating m-1"
+                    style="background-color: #55acee"
+                    href="#!"
+                    role="button"
+            ><i class="bi bi-twitter"></i
+            ></a>
+
+            <!-- Google -->
+
+            <a
+                    class="btn btn-primary btn-floating m-1"
+                    style="background-color: #dd4b39"
+                    href="#!"
+                    role="button"
+            ><i class="bi bi-google"></i
+            ></a>
+
+            <!-- Instagram -->
+
+            <a
+                    class="btn btn-primary btn-floating m-1"
+                    style="background-color: #ac2bac"
+                    href="#!"
+                    role="button"
+            ><i class="bi bi-instagram"></i></a>
+
+            <!-- Linkedin -->
+            <a
+                    class="btn btn-primary btn-floating m-1"
+                    style="background-color: #0082ca"
+                    href="#!"
+                    role="button"
+            ><i class="bi bi-linkedin"></i></a>
+            <!-- Github -->
+            <a
+                    class="btn btn-primary btn-floating m-1"
+                    style="background-color: #333333"
+                    href="#!"
+                    role="button"
+            ><i class="bi bi-github"></i></a>
+          </div>
+        </div>
+        <!--Grid row-->
+      </section>
+      <!-- Section: Links -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div
+            class="text-center p-3"
+            style="background-color: rgba(0, 0, 0, 0.2)"
+    >
+      © 2020 Yari France SAS |
+      <a class="text-white" href="https://mdbootstrap.com/"
+      >Mentions relatives à la protection des donneés| Mentions générales</a
+      >
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

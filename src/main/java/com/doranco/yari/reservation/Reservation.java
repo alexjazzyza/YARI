@@ -4,9 +4,11 @@ import com.doranco.yari.agency.Agency;
 import com.doranco.yari.user.customer.Customer;
 import com.doranco.yari.vehicle.Vehicle;
 import lombok.*;
+import org.aspectj.lang.annotation.After;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.util.Date;
 @Entity

@@ -1,5 +1,6 @@
 package com.doranco.yari.reservation;
 
+import com.doranco.yari.Utilities.DateConversion;
 import com.doranco.yari.agency.Agency;
 import com.doranco.yari.agency.ECities;
 import com.doranco.yari.agency.IAgencyService;
@@ -58,22 +59,11 @@ public class ReservationController {
         Date startDate;
         Date endDate;
 
-        try {
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            startDate = formatter.parse(startDateString);
-            endDate = formatter.parse(endDateString);
-            formatter.applyPattern("dd-MM-yyyy");
-            startDateString = formatter.format(startDate);
-            endDateString = formatter.format(endDate);
-            startDate = formatter.parse(startDateString);
-            endDate = formatter.parse(endDateString);
-
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+        startDate = DateConversion.convertDateA(startDateString);
+        endDate = DateConversion.convertDateA(endDateString);
 
         try {
-            List<Vehicle> availableVehicle = vehicleService.getAvailableVehicle(city, startDate, endDate, vehicleType);
+            List<Vehicle> availableVehicle = vehicleService.getAvailableVehicle(city, new SimpleDateFormat("yyyy-MM-dd").parse(startDateString), new SimpleDateFormat("yyyy-MM-dd").parse(endDateString), vehicleType);
             model.addAttribute("availableVehicles", availableVehicle);
             model.addAttribute("city", city);
             model.addAttribute("startDate", startDateString);
@@ -111,7 +101,7 @@ public class ReservationController {
         Date endDate;
 
         try {
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             startDate = formatter.parse(startDateString);
             endDate = formatter.parse(endDateString);
         } catch (ParseException e) {

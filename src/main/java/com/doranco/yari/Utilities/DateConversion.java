@@ -7,7 +7,7 @@ import java.util.Date;
 public class DateConversion {
 
     // Convert from Date("yyyy-MM-dd") to Date("dd-MM-yyyy")
-    public Date convertDateA(String dateString) {
+    static public Date convertDateA(String dateString) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
         Date date = null;
